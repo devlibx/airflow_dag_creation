@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.devlibx</groupId>
     <artifactId>graph</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <url>https://github.com/devlibx/airflow_dag_creation</url>
     <description>A library which provides airflow graph creation helpers</description>
 
@@ -19,7 +17,7 @@
         <connection>scm:git:https://github.com/devlibx/airflow_dag_creation.git</connection>
         <developerConnection>scm:git:https://github.com/devlibx/airflow_dag_creation.git</developerConnection>
         <url>https://github.com/devlibx/airflow_dag_creation/tree/master</url>
-        <tag>0.0.45</tag>
+        <tag>0.0.1</tag>
     </scm>
 
     <dependencyManagement>
