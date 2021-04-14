@@ -7,6 +7,7 @@
     <artifactId>graph</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <name>graph</name>
     <url>https://github.com/devlibx/airflow_dag_creation</url>
     <description>A library which provides airflow graph creation helpers</description>
 
