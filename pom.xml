@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.devlibx</groupId>
     <artifactId>graph</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <url>https://github.com/devlibx/airflow_dag_creation</url>
     <description>A library which provides airflow graph creation helpers</description>
 
