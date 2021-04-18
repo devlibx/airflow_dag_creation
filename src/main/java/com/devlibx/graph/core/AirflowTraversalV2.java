@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AirflowTraversalV2 implements ITraversal {
+class AirflowTraversalV2 implements ITraversal {
 
     @Override
     public void travers(GraphNode root, List<String> sb) {

@@ -48,8 +48,8 @@ public class GraphInstanceTest extends TestCase {
         GraphInstance graphInstance = new GraphInstance();
         graphInstance.initGraph(graph);
 
-
-        List<String> result = graphInstance.traversForward(new AirflowTraversalV2());
+        // Run traversal
+        List<String> result = graphInstance.travers(new AirflowTraversalV2());
         assertNotNull(result);
         assertTrue(result.size() > 0);
 
@@ -114,7 +114,7 @@ public class GraphInstanceTest extends TestCase {
         System.out.println();
 
 
-        List<String> resultNew = graphInstance.travers(fromString, new AirflowTraversal());
+        List<String> resultNew = graphInstance.traversDoNotUse(new AirflowTraversal());
         assertNotNull(resultNew);
         assertTrue(resultNew.size() > 0);
         resultNew.forEach(System.out::println);
@@ -122,7 +122,7 @@ public class GraphInstanceTest extends TestCase {
         assertEquals(result, resultNew);
 
         System.out.println("\n\n");
-        result = graphInstance.traversForward(new AirflowTraversalV2());
+        result = graphInstance.travers(new AirflowTraversalV2());
         assertNotNull(result);
         assertTrue(result.size() > 0);
         result.forEach(System.out::println);

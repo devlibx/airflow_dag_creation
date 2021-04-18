@@ -40,7 +40,7 @@ public class GraphInstance {
         setupGraph();
     }
 
-    public void setupGraph() {
+    private void setupGraph() {
         nodes.forEach((nodeId, graphNode) -> {
 
             // This does not depend on anything so nothing to be done
@@ -56,19 +56,21 @@ public class GraphInstance {
         });
     }
 
-    public List<String> travers(ITraversal traversal) {
+    @Deprecated
+    public List<String> traversDoNotUse(ITraversal traversal) {
         List<String> result = new ArrayList<>();
         traversal.travers(endNode, result);
         return result;
     }
 
-    public List<String> traversForward(ITraversal traversal) {
+    public List<String> travers(ITraversal traversal) {
         List<String> result = new ArrayList<>();
         traversal.travers(startNode, result);
         return result;
     }
 
-    public List<String> travers(GraphNode node, ITraversal traversal) {
+    @Deprecated
+    public List<String> traversDoNotUseV1(GraphNode node, ITraversal traversal) {
         List<String> result = new ArrayList<>();
         traversal.travers(node, result);
         return result;
