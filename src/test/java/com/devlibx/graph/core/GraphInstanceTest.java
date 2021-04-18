@@ -6,10 +6,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import junit.framework.TestCase;
 import org.apache.commons.io.IOUtils;
+import org.junit.Ignore;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GraphInstanceTest extends TestCase {
@@ -29,6 +31,42 @@ public class GraphInstanceTest extends TestCase {
     }
 
     public void testGraph() throws Exception {
+        // Read file
+        String fileName = "graph.json";
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        String content = IOUtils.toString(file.toURI(), Charset.defaultCharset());
+        assertNotNull(content);
+
+        // Read Graph from file
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        Graph graph = objectMapper.readValue(content, Graph.class);
+        assertNotNull(graph);
+
+        // Setup graph
+        GraphInstance graphInstance = new GraphInstance();
+        graphInstance.initGraph(graph);
+
+
+        List<String> result = graphInstance.traversForward(new AirflowTraversalV2());
+        assertNotNull(result);
+        assertTrue(result.size() > 0);
+
+        List<String> expected = new ArrayList<>();
+        expected.add("sink_2__needs__transformation_2 >> end");
+        expected.add("transformation_2__needs_source_read_from_redshift_2_and_3 >> sink_2__needs__transformation_2");
+        expected.add("start >> [source_read_from_redshift_1, source_read_from_redshift_2, source_read_from_redshift_3]");
+        expected.add("source_read_from_redshift_1 >> transformation_1__needs_source_read_from_redshift_1");
+        expected.add("sink_1__needs__transformation_1 >> end");
+        expected.add("source_read_from_redshift_3 >> transformation_2__needs_source_read_from_redshift_2_and_3");
+        expected.add("source_read_from_redshift_2 >> transformation_2__needs_source_read_from_redshift_2_and_3");
+        expected.add("transformation_1__needs_source_read_from_redshift_1 >> sink_1__needs__transformation_1");
+        assertEquals(expected, result);
+    }
+
+    @Ignore
+    public void _testGraphIgnore() throws Exception {
         // Read file
         String fileName = "graph.json";
         ClassLoader classLoader = getClass().getClassLoader();
@@ -90,6 +128,9 @@ public class GraphInstanceTest extends TestCase {
         result.forEach(System.out::println);
         System.out.println();
 
+
+        System.out.println();
+        System.out.println(objectMapper.writeValueAsString(graphInstance.startNode));
 
     }
 }

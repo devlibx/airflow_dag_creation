@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 public class GraphNode {
+    public static final boolean ADD_PARENTS = false;
     private String id;
     private Node node;
     private Set<GraphNode> vertices;
@@ -28,7 +29,9 @@ public class GraphNode {
     }
 
     public void addParent(GraphNode parent) {
-        parents.add(parent);
+        if (ADD_PARENTS) {
+            parents.add(parent);
+        }
     }
 
     public void addChild(GraphNode child) {
@@ -48,7 +51,7 @@ public class GraphNode {
     public String toString() {
         try {
             return "Id=" + id +
-                    " parents=" + parents.stream().map(GraphNode::getId).collect((Collectors.toList())) +
+                    (ADD_PARENTS ? " parents=" + parents.stream().map(GraphNode::getId).collect((Collectors.toList())) : "") +
                     " child=" + vertices.stream().map(GraphNode::getId).collect((Collectors.toList()));
         } catch (Exception e) {
             return "Id=" + id;
