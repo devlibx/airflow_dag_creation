@@ -1,12 +1,14 @@
 package com.devlibx.graph.core;
 
 import com.devlibx.graph.domain.Graph;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class GraphInstance {
     public Map<String, GraphNode> nodes = new HashMap<>();
     public GraphNode startNode;
@@ -57,6 +59,18 @@ public class GraphInstance {
     public List<String> travers(ITraversal traversal) {
         List<String> result = new ArrayList<>();
         traversal.travers(endNode, result);
+        return result;
+    }
+
+    public List<String> traversForward(ITraversal traversal) {
+        List<String> result = new ArrayList<>();
+        traversal.travers(startNode, result);
+        return result;
+    }
+
+    public List<String> travers(GraphNode node, ITraversal traversal) {
+        List<String> result = new ArrayList<>();
+        traversal.travers(node, result);
         return result;
     }
 }

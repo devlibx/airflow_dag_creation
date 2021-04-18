@@ -2,13 +2,15 @@ package com.devlibx.graph.core;
 
 import com.devlibx.graph.domain.Node;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
-class GraphNode {
+@NoArgsConstructor
+public class GraphNode {
     private String id;
     private Node node;
     private Set<GraphNode> vertices;
@@ -44,9 +46,13 @@ class GraphNode {
 
     @Override
     public String toString() {
-        return "Id=" + id +
-                " parents=" + parents.stream().map(GraphNode::getId).collect((Collectors.toList())) +
-                " child=" + vertices.stream().map(GraphNode::getId).collect((Collectors.toList()));
+        try {
+            return "Id=" + id +
+                    " parents=" + parents.stream().map(GraphNode::getId).collect((Collectors.toList())) +
+                    " child=" + vertices.stream().map(GraphNode::getId).collect((Collectors.toList()));
+        } catch (Exception e) {
+            return "Id=" + id;
+        }
     }
 
     @Override
